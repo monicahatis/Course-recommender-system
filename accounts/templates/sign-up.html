@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<div class="breadcumb-wrapper" data-bg-src="{% static 'assets/img/breadcumb/breadcumb-bg.jpg' %}">
+    <div class="container z-index-common">
+       <h1 class="breadcumb-title">Sign Up</h1>
+       <ul class="breadcumb-menu">
+          <li><a href="index.html">Home</a></li>
+          <li>Sign Up</li>
+       </ul>
+    </div>
+ </div>
+
+ <section class="space">
+    <div class="container">
+       <div class="row justify-content-center">
+          <div class="col-lg-6 col-md-7 col-sm-9">
+             <div class="title-area text-center"></div>
+          </div>
+       </div>
+       <div class="contact-form-wrap" data-bg-src="{% static 'assets/img/bg/contact_bg_1.png' %}">
+          <span class="sub-title">Sign Up</span>
+  
+        
+          <form action="{% url 'accounts:signUp' %}" method="POST" class="contact-form">
+            {% csrf_token %} 
+             <div class="row">
+                <div class="form-group col-md-6">{{form.firstName}} <i class="fal fa-user"></i></div>
+                <div class="form-group col-md-6">{{form.lastName}} <i class="fal fa-user"></i></div>
+                <div class="form-group col-md-6">{{form.phone}} <i class="fal fa-user"></i></div>
+                <div class="form-group col-md-6">{{form.email}} <i class="fal fa-user"></i></div>
+                <div class="form-group col-md-6">{{form.password}}<i class="fal fa-lock"></i></div>
+      
+              
+                <div class="form-btn col-12 mt-10"><button type="submit" class="as-btn">Sign Up<i class="fas fa-long-arrow-right ms-2"></i></button></div>
+             </div>
+             <p class="form-messages mb-0 mt-3"></p>
+          </form>
+       </div>
+    </div>
+ </section>
+
+{% endblock content %}

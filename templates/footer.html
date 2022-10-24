@@ -1,0 +1,73 @@
+{% load static %}
+
+<footer class="footer-wrapper footer-layout1">
+    <div class="widget-area">
+       <div class="container">
+          <div class="row justify-content-between">
+             <div class="col-md-6 col-xxl-3 col-xl-4">
+                <div class="widget footer-widget">
+                   <div class="as-widget-about">
+                      <div class="about-logo"><a href="index.html"><img src="{% static  'assets/img/logo-white.svg' %}" alt="Acadu"></a></div>
+                      <p class="about-text">Continually optimize backward manufactured products whereas communities negotiate life compelling alignments</p>
+                      <h4 class="footer-info-title">Follow Us On:</h4>
+                      <div class="as-social"><a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a> <a href="https://www.twitter.com/"><i class="fab fa-twitter"></i></a> <a href="https://www.linkedin.com/"><i class="fab fa-linkedin-in"></i></a> <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a> <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a></div>
+                   </div>
+                </div>
+             </div>
+             <div class="col-md-6 col-xl-auto">
+                <div class="widget widget_nav_menu footer-widget">
+                   <h3 class="widget_title">Quick link</h3>
+                   <div class="menu-all-pages-container">
+                      <ul class="menu">
+                       <li><a href="{% url 'homepage:homepage' %}">Home</a></li>
+                       <li><a href="{% url 'homepage:courses' %}">Courses</a></li>
+                       
+                       {% if request.user.is_authenticated %}
+                     
+
+                       {% else %}
+                       <li><a href="{% url 'accounts:signIn' %}">Sign In</a></li>
+                      
+                       {% endif %}
+                    
+                      </ul>
+                   </div>
+                </div>
+             </div>
+             <div class="col-md-6 col-xl-auto">
+                <div class="widget widget_nav_menu footer-widget">
+                   <h3 class="widget_title">More</h3>
+                   <div class="menu-all-pages-container">
+                      <ul class="menu">
+              
+                        {% if request.user.is_authenticated %}
+                        <li><a href="{% url 'homepage:recommendation' %}">Recommendations</a></li>
+                        {% else %}
+                        <li><a href="{% url 'accounts:signUp' %}">Sign Up</a></li>
+                        {% endif %}
+                       
+                       
+                       <li><a href="{% url 'homepage:contact' %}">Contact</a></li>
+                      </ul>
+                   </div>
+                </div>
+             </div>
+             <div class="col-md-6 col-xl-3">
+                <div class="widget footer-widget">
+                   <h3 class="widget_title">Get in touch!</h3>
+                   <form class="newsletter-widget">
+                      <p class="footer-text">Fusce varius, dolor tempor interdum tristiquei bibendum service life.</p>
+                      <div class="form-group"><input class="form-control" type="email" placeholder="Enter Email" required=""> <i class="fal fa-envelope"></i></div>
+                      <button type="submit" class="as-btn shadow-none">Subscribe</button>
+                   </form>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+ 
+    <div class="shape-mockup jump d-none d-xl-block" data-top="24%" data-left="4%"><img src="{% static 'assets/img/shape/footer_shape_1.png' %}" alt="shapes"></div>
+    <div class="shape-mockup jump-reverse d-none d-xl-block" data-bottom="20%" data-right="4%"><img src="{% static 'assets/img/shape/footer_shape_2.png' %}" alt="shapes"></div>
+    <div class="shape-mockup" data-top="0" data-right="0"><img src="{% static 'assets/img/shape/footer_shape_3.png' %}" alt="shapes"></div>
+ </footer>
+  <script src="{% static 'assets/js/vendor/jquery-3.6.0.min.js' %}"></script><script src="{% static  'assets/js/app.min.js' %}"></script><script src="{% static 'assets/js/main.js' %}"></script>

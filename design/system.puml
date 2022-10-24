@@ -1,0 +1,29 @@
+@startuml customer_api
+!define DARKBLUE
+!includeurl https://raw.githubusercontent.com/Drakemor/RedDress-PlantUML/master/style.puml
+
+
+interface "Auth" as  au
+au - [Apis]
+[Apis] ..> SignIN
+[Apis] ..> CreateAccount
+[Apis1] ..> GetAllRestaurants
+[Apis1] ..> GetOneRestaurant
+[api2] ..>  BookReservations
+[api2] ..> PayForResearvation
+[APi3] ..> RateRestaurant
+[Apis] ..> [Apis1]
+[Apis1] ..> [api2]
+[api2] ..> [APi3]
+
+note left of SignIN : The customer logs \n in by providing username and \n password
+note left of CreateAccount : The user creates account by providing username \n email \n password \n etc
+
+note left of RateRestaurant : user rates the restaurant by passing \n rate and comment 
+
+note left of GetAllRestaurants :  thish shows a list of all \n restaurants available
+note left of GetOneRestaurant : this is used to get \n one restaurant by providing \n an id which you can use to filter \n the list of all restaurants 
+note left of BookReservations : after the customer logs in \n and views each product details \n the customer will be able to book \n tables and check ones which have been booked
+note left of PayForResearvation : the payment will consist of \n mpesa or bank account
+
+@enduml

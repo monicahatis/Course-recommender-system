@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<div class="breadcumb-wrapper" data-bg-src="{% static 'assets/img/breadcumb/breadcumb-bg.jpg' %}">
+    <div class="container z-index-common">
+        <h1 class="breadcumb-title">Choose Grade</h1>
+        <ul class="breadcumb-menu">
+            <li><a href="index.html">Home</a></li>
+            <li>Choose Grade</li>
+        </ul>
+    </div>
+</div>
+
+<section class="space">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-7 col-sm-9"><div class="title-area text-center"></div></div>
+        </div>
+        <div class="contact-form-wrap" data-bg-src="{% static 'assets/img/bg/contact_bg_1.png' %}">
+            
+            <h2 class="border-title">Choose KCPE grade</h2>
+           
+            <form action="{% url 'homepage:addGrade' %}" method="POST" class="contact-form">
+                {% csrf_token %}
+                <div class="row">
+
+                    <div class="form-group col-md-6">
+                        <select name="subject" id="subject" class="form-select style3">
+                            <option value="" disabled="disabled" selected="selected" hidden>Select Grade</option>
+                            {% if all_requirements %}
+                            {% for k in  all_requirements %}
+                            <option value="{{k.id}}">{{k.grade}} ({{k.mimimum_point}}-{{k.maximum_point}}) </option>
+                            {% endfor %}
+                            {% endif %}
+                            
+                        
+                        </select>
+                        <i class="fal fa-chevron-down"></i>
+                    </div>
+                  
+                    <div class="form-btn col-12 mt-10">
+                        <button class="as-btn">Submit<i class="fas fa-long-arrow-right ms-2"></i></button>
+                    </div>
+                </div>
+                <p class="form-messages mb-0 mt-3"></p>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock content %}

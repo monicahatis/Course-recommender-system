@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<section class="space-top space-extra-bottom">
+    <div class="container">
+       <div class="as-sort-bar">
+          <div class="row justify-content-between align-items-center">
+             <div class="col-md-auto"><span class="course-result-count">We found <span class="text-theme">{{len_courses}} courses</span> available for you</span></div>
+             <div class="col-md-auto">
+                <div class="nav" role="tablist"><a href="#" class="active" id="tab-course-grid" data-bs-toggle="tab" data-bs-target="#tab-grid" role="tab" aria-controls="tab-grid" aria-selected="true"><i class="fa-solid fa-grid-2"></i> Grid</a> <a href="#" id="tab-course-list" data-bs-toggle="tab" data-bs-target="#tab-list" role="tab" aria-controls="tab-grid" aria-selected="false"><i class="fas fa-list"></i> List</a></div>
+             </div>
+          </div>
+       </div>
+       <div class="tab-content" id="nav-tabContent">
+          <div class="tab-pane fade active show" id="tab-grid" role="tabpanel" aria-labelledby="tab-course-grid">
+             <div class="row gy-4 mb-30">
+               {% if courses %}
+               {% for u in courses  %}
+               <div class="col-md-6 col-lg-4 col-xxl-3">
+                  <div class="course-box style4">
+                     <div class="course-img"><img  height="200"  width="240" src="{{u.course_image.url}}" alt="course"> <span class="tag">{{u.university}}</span></div>
+                     <div class="course-content">
+                        <div class="course-author">
+                           
+                           <div class="course-rating">
+                              {% if u.ratting_percentage < 30 %}
+
+                              <div class="star-rating" role="img" aria-label="Rated 1.00 out of 5"><span style="width:{{u.ratting_percentage}}%">Rated <strong class="rating">1.00</strong> out of 5</span></div>
+                              (2.00)
+                           </div>
+      
+                           {% elif  u.ratting_percentage >  40 and  u.ratting_percentage < 70 %}
+      
+                           <div class="star-rating" role="img" aria-label="Rated 3.00 out of 5"><span style="width:{{u.ratting_percentage}}%">Rated <strong class="rating">3.00</strong> out of 5</span></div>
+                           (3.00)
+                        </div>
+      
+                        {% elif  u.ratting_percentage >  71 and  u.ratting_percentage < 95 %}
+      
+                        <div class="star-rating" role="img" aria-label="Rated 4.00 out of 5"><span style="width:{{u.ratting_percentage}}%">Rated <strong class="rating">4.00</strong> out of 5</span></div>
+                        (4.00)
+                     </div>
+      
+                     {% elif  u.ratting_percentage  == 95 %}
+      
+                     <div class="star-rating" role="img" aria-label="Rated 5.00 out of 5"><span style="width:{{u.ratting_percentage}}%">Rated <strong class="rating">5.00</strong> out of 5</span></div>
+                     (5.00)
+                  </div>
+                              {% endif %}
+                        </div>
+                        <h3 class="course-title"><a href="{% url 'homepage:courseDetails' u.id %}">{{u.course_title}}</a></h3>
+                      
+                     </div>
+                  </div>
+               </div>
+               {% endfor %}
+               {% endif %}
+               
+              
+              
+             </div>
+          </div>
+          <div class="tab-pane fade" id="tab-list" role="tabpanel" aria-labelledby="tab-course-list">
+            {% if courses %}
+            
+            {% for jy in courses  %}
+            <div class="course-list">
+               <div class="course-img"><img height="200"  width="240" src="{{jy.course_image.url}}" alt="course"> <span class="tag">{{jy.university}}</span></div>
+               <div class="course-content">
+                  <h3 class="course-title"><a href="course-details.html">{{jy.course_title}}</a></h3>
+                  <div class="course-author">
+                  
+                     <div class="course-rating">
+                        {% if jy.ratting_percentage <= 30 %}
+
+                   
+                        <div class="star-rating" role="img" aria-label="Rated 1.00 out of 5"><span style="width:{{jy.ratting_percentage}}%">Rated <strong class="rating">1.00</strong> out of 5</span></div>
+                        (2.00)
+                     </div>
+
+                     {% elif  jy.ratting_percentage >=  40 and  jy.ratting_percentage <= 70 %}
+
+                     <div class="star-rating" role="img" aria-label="Rated 3.00 out of 5"><span style="width:{{jy.ratting_percentage}}%">Rated <strong class="rating">3.00</strong> out of 5</span></div>
+                     (3.00)
+                  </div>
+
+                  {% elif  jy.ratting_percentage >=  71 and  jy.ratting_percentage <= 95 %}
+
+                  <div class="star-rating" role="img" aria-label="Rated 4.00 out of 5"><span style="width:{{jy.ratting_percentage}}%">Rated <strong class="rating">4.00</strong> out of 5</span></div>
+                  (4.00)
+               </div>
+
+               {% elif  jy.ratting_percentage >=  96 %}
+
+               <div class="star-rating" role="img" aria-label="Rated 5.00 out of 5"><span style="width:{{jy.ratting_percentage}}%">Rated <strong class="rating">5.00</strong> out of 5</span></div>
+               (5.00)
+            </div>
+                        {% endif %}
+                  </div>
+                  <p class="course-text">{{jy.short_description}}</p>
+          
+               </div>
+            </div>
+            {% endfor %}
+            {% endif %}
+             
+         
+            
+             
+   
+          </div>
+       </div>
+       <div class="as-pagination text-center pt-20">
+          <ul>
+             <li><a href="blog.html">1</a></li>
+             <li><a href="blog.html">2</a></li>
+             <li><a href="blog.html">3</a></li>
+             <li><a href="blog.html"><i class="far fa-arrow-right"></i></a></li>
+          </ul>
+       </div>
+    </div>
+ </section>
+
+{% endblock content %}

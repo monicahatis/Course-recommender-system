@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="breadcumb-wrapper" data-bg-src="{% static 'assets/img/breadcumb/breadcumb-bg.jpg' %}">
+    <div class="container z-index-common">
+       <h1 class="breadcumb-title">Raisec</h1>
+       <ul class="breadcumb-menu">
+          <li><a href="index.html">Home</a></li>
+          <li>Raisec</li>
+       </ul>
+    </div>
+ </div>
+
+ <section class="space">
+    <div class="container">
+       <div class="row justify-content-center">
+          <div class="col-lg-6 col-md-7 col-sm-9">
+             <div class="title-area text-center"></div>
+          </div>
+       </div>
+       <div class="contact-form-wrap" data-bg-src="{% static 'assets/img/bg/contact_bg_1.png' %}">
+         <form  method="POST" action="{% url 'homepage:raisec' %}" class="contact-form">
+            {% csrf_token %}
+            {% if all_raisec_group %}
+            {% for i in all_raisec_group  %}
+          <span class="sub-title">{{i.group_name}}</span>
+          {% if all_raisec_quiz %}
+          <div class="row">
+          {% for k in all_raisec_quiz  %}
+          {% if k.raisec_category.id == i.id %}
+             
+               <div class="col-12 form-group">
+                  <input id="quiz_{{i.group_name}}_{{k.id}}" name="quiz_{{i.group_name}}_{{k.id}}" type="checkbox" />
+                  <label for="quiz_{{i.group_name}}_{{k.id}}">{{k.raisec_question}}<span ></span></label>
+           
+
+              {% endif %}
+              {% endfor %}
+            </div>
+              {% endif %}
+
+              {% endfor %}
+
+              {% endif %}
+               <button type="submit" class="as-btn">Submit<i class="fas fa-long-arrow-right ms-2"></i></button>
+             </div>
+           
+          </form>
+       </div>
+    </div>
+ </section>
+
+
+{% endblock content %}
